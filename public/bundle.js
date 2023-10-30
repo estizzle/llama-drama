@@ -8583,6 +8583,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var GameScreen = function GameScreen() {
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useNavigate)();
   var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
       return state.game.game;
     }),
@@ -8593,7 +8594,11 @@ var GameScreen = function GameScreen() {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     dispatch((0,_store_gameSlice__WEBPACK_IMPORTED_MODULE_2__.getGamePrompt)(storypromptId));
   }, [dispatch]);
-  console.log(PathOptions);
+  console.log("Path Options", PathOptions);
+  console.log("storypromptId", storypromptId);
+  var handleOptionClick = function handleOptionClick(NextPromptId) {
+    navigate("/gamestart/".concat(NextPromptId));
+  };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
     className: "gs-title"
   }, "Llama Drama"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
@@ -8602,7 +8607,7 @@ var GameScreen = function GameScreen() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
       className: "options-btn",
       onClick: function onClick() {
-        return console.log('NextPromptId', po.NextPromptId);
+        return handleOptionClick(po.NextPromptId);
       },
       key: po.id
     }, po.Option);
